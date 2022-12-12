@@ -23,3 +23,7 @@ void draw(){
   
   
 }
+
+void mouseWheel(MouseEvent event){
+  panel.mouseWheel(event);
+}
