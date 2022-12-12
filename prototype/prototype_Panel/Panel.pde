@@ -22,6 +22,10 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
     this.dateTime = dateTime;
   }
   
+  void mouseWheel(MouseEvent event){
+    println(event.getAmount());
+  }
+  
   void draw(){
     fill(255);
     rect(this.x,this.y,this.w,this.h);
@@ -36,7 +40,7 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
       //ラベル（タスクの属性...予定or締切or予測)
       //時刻
       
-     println(this.dateTime);
+     //println(this.dateTime);
   }
 }
 
