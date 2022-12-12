@@ -29,6 +29,7 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
     
     /*textボックスのクラスが必要！！*/
     //日付表示
+    textSize(20);
     text(str(this.dateTime.getDate()), this.x, this.y);
     
     //タスク表示
@@ -38,6 +39,7 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
      println(this.dateTime);
   }
 }
+
 
 //タスク管理
 class Task {
