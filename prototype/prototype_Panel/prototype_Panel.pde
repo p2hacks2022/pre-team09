@@ -17,7 +17,7 @@ void setup(){
 }
 
 void draw(){
-  //background(255);
+  background(255);
   panel.draw();
   
   
