@@ -30,7 +30,7 @@ void draw() {
 
     textFont(fontJP25);
     textAlign(RIGHT, BOTTOM);
-    text("達成率", width - 145, 60);
+    text("信用度", width - 145, 60);
     textFont(fontEN40);
     text(nf(achive_all, 0, 1), width - 42, 65);
     textFont(fontEN25);
