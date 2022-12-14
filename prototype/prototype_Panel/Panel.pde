@@ -26,11 +26,41 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
   
   void mouseWheel(MouseEvent event){
     getCount = event.getCount();
-    this.y += getCount * 5;
+    this.y += getCount * 5;//スクロールの動きを滑らかにする
     println(getCount);
   }
   
   void draw(){
+<<<<<<< HEAD
+    
+    fill(255);
+    for(int i = 0; i<14;i++){
+        line(this.x, this.y + h + 15 + i*60, this.x + w, this.y + h + 15 + i*60);
+        //rect(this.x,this.y,this.w,this.h);
+    }
+    fill(0);
+    
+    
+    /*textボックスのクラスが必要！！*/
+    //日付表示
+    for(int k = 0; k<14; k++){
+      textSize(40);
+      text(this.dateTime.getDate() + k, this.x, this.y + k*60);
+    }
+    
+    //タスク表示
+      //ラベル（タスクの属性...予定or締切or予測)
+      //時刻
+      
+     //println(this.dateTime);
+      /*stroke(colorBlack);
+      strokeWeight(2);
+      if (i != 11) {
+        line(20, 185 + i * 60, width - 20, 185 + i * 60);  //区切り線
+      }
+      noStroke();*/
+    }
+=======
     //下線を表示
     stroke(colorBlack);
     strokeWeight(2);
@@ -42,6 +72,7 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
     textAlign(CENTER, BOTTOM);
     fill(colorBlack);
     text(this.dateTime.get(Calendar.DATE), this.x + 30, this.y);
+>>>>>>> 12076e07bd13217ffe04eb40cd54511fa7f6fee5
   }
 }
 
