@@ -1,6 +1,6 @@
 class UI{
   float x,y,w,h;
-  float size;
+
 }
 
 
@@ -19,7 +19,7 @@ class Button extends UI{
   void mouseOverStroke(String strokeType){
     if(isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h)){
       if(strokeType == "box"){
-        strokeWeight(10);
+        strokeWeight(20);
         stroke(100,20);
         noFill();
         rect(this.x, this.y, this.w, this.h);
@@ -47,9 +47,10 @@ class BoxButton extends Button{
     super(_x, _y, _w, _h, _c);//Buttonクラスのコンストラクタを継承
   }
   void draw(){
-    
     super.mouseOverStroke("box");//ButtonクラスのmouseOverStroke()を継承
     fill(this.c);
+    stroke(0);
+    strokeWeight(1);
     rect(this.x, this.y, this.w, this.h);
   }
   
@@ -59,10 +60,43 @@ class BoxButton extends Button{
   
 }
 
+class TextBoxButton extends BoxButton{
+  String text;
+  color textColor;
+  int textSize;
+  TextBoxButton(String _text, color _textColor, int _textSize, float _x, float _y, float _w, float _h, color _c){
+    super(_x, _y, _w, _h, _c);//Buttonクラスのコンストラクタを継承
+    this.text = _text;
+    this.textColor = _textColor;
+    this.textSize = _textSize;
+  }
+  
+  void draw(){
+   super.mouseOverStroke("box");
+   fill(this.c);
+   
+   stroke(0);
+   strokeWeight(1);
+   rect(this.x, this.y, this.w, this.h);
+   
+   
+   textAlign(CENTER, CENTER);
+   textSize(textSize);
+   fill(textColor);
+   
+   float scalar = 0.04*textSize;
+   float a = textAscent()*scalar;
+   float b = textDescent()*scalar;
+   text(text, this.x + this.w/2 , this.y +(a+b)/2);
+  }
+  
+}
+
 
 
 class PlusButton extends BoxButton{
-  float line_weight = 0.1;
+  float size;
+  float line_weight = 0.1;  
   PlusButton(float _x, float _y, float _size,  color _c){
     super(_x, _y, _size, _size, _c);
     this.size = _size;
@@ -84,6 +118,7 @@ class PlusButton extends BoxButton{
 
 class BatuButton extends BoxButton{
   float line_weight = 0.1;
+  float size;
   BatuButton(float _x, float _y, float _size,  color _c){
     super(_x, _y, _size, _size, _c);
     this.size = _size;
