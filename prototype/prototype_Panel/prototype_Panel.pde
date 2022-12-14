@@ -8,7 +8,7 @@ import java.nio.file.Files;
 PFont open_sans_regular, mgenplus_regular, mgenplus_heavy;  
 color colorMain = #40b0a0, colorSub = #a0f0d0, colorAttention = #c03050, colorWhite = #ffffff, colorGray = #d0d0d0, colorBlack = #303030;  //色
 
-//Timestamp dateTime;
+Timestamp dateTime_stamp;
 TaskPanel panel;
 
 
@@ -27,31 +27,23 @@ ArrayList<Calendar> predictDate;
 float screen_ratio = 0.9;
 void setup(){
   size(540, 960);
-  planDate = new ArrayList<Calendar>();
+  planDate     = new ArrayList<Calendar>();
   deadlineDate = new ArrayList<Calendar>();
-  predictDate = new ArrayList<Calendar>();
+  predictDate  = new ArrayList<Calendar>();
   
-  for(int i=0; i< 1; i++){
+  
     Calendar day = Calendar.getInstance();
-    //println("MONTH", day.get(Calendar));
-    //12/14
     planDate.add(day);
-    println("day:",day.get(Calendar.DATE));
-    println("planDate DATE:", planDate.get(i).get(Calendar.DATE));
     
-    //12/5
     day = Calendar.getInstance();
-    day.set(Calendar.DATE, 5);
-    deadlineDate.add(day);
+    day.set(Calendar.DATE, 15);
+    //deadlineDate.add(day);
     
-    //12/4
     day = Calendar.getInstance();
-    day.set(Calendar.DATE, 4);
+    day.set(Calendar.DATE, 14);
     predictDate.add(day);
     
-    println("planDate DATE:", planDate.get(i).get(Calendar.DATE));
     
-  }
   
   //フォント読み込み
   open_sans_regular  = createFont("fonts/OpenSans-Regular.ttf", 40);
@@ -64,7 +56,7 @@ void setup(){
   println("planDate DATE:",planDate.get(0).get(Calendar.DATE));
   
   panel = new TaskPanel(500, 50, width, screen_ratio, dateTime);
-  panel.getTaskDate("数学",deadlineDate, deadlineDate, predictDate);
+  panel.getTaskDate("数学",planDate, deadlineDate, predictDate);
 
 }
 

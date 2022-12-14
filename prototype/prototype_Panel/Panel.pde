@@ -62,8 +62,8 @@ class TaskPanel extends Panel{
     this.taskTitle = _taskTitle;
     println(taskTitle);
     for(int i = 0; i < planDate.size(); i++){
-      Calendar nyanday = Calendar.getInstance();
-      println("planDate DATE",planDate.get(i).get(Calendar.DATE));
+      Calendar day = Calendar.getInstance();
+      println("planDate DATE aaaaa",planDate.get(i).get(Calendar.DATE));
       if(isSameDate(this.dateTime, planDate.get(i))){//このパネルが持つ日時と予定日時が同じなら、
         taskType = "予定";
       }else if(isSameDate(this.dateTime, deadlineDate.get(i))){//このパネルが持つ日時と締切日時が同じなら、
@@ -78,13 +78,11 @@ class TaskPanel extends Panel{
   
   void draw(){
    super.draw();
-   rect(width - 100, this.y, 60, 30);  //種別の背景になる四角形を表示
+   float x_b = width - 140, y_b = this.y - 40, w_b = 60, h_b = 30;
+   rect(x_b, y_b, w_b, h_b);  //種別の背景になる四角形を表示
    
    textFont(mgenplus_heavy);
-   textAlign(RIGHT, CENTER);
-   fill(255, 0, 0);//fill(colorWhite);
-   text(taskType, width - 140, this.y);  //種別を表示
-   //println(taskType);
+   textBox(taskType, colorWhite,20, x_b, y_b, w_b, h_b);  //種別を表示
   }
   
   
