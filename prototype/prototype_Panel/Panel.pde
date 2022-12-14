@@ -32,15 +32,21 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
   
   void draw(){
     fill(255);
-    rect(this.x,this.y,this.w,this.h);
+    //rect(this.x,this.y,this.w,this.h);
+    stroke(colorBlack);
+     strokeWeight(2);
+    line(this.x, this.y, this.x+this.w, this.y);  //区切り線
     fill(0);
     
     
     /*textボックスのクラスが必要！！*/
     //日付表示
     textSize(20);
-    text(str(this.dateTime.getDate()), this.x, this.y);
     
+     textFont(open_sans_regular);
+     textAlign(CENTER, BOTTOM);
+     fill(colorBlack);
+     text(str(this.dateTime.getDate()), this.x + 30, this.y);
     //タスク表示
       //ラベル（タスクの属性...予定or締切or予測)
       //時刻
@@ -48,6 +54,8 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
      //println(this.dateTime);
   }
 }
+
+
 
 
 //タスク管理
