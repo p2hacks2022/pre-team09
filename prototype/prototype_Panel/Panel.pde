@@ -3,23 +3,23 @@ abstract class UI {
 }
 
 class Panel extends UI{//もしかするとextends Taskになる可能性あり？
-  Timestamp  dateTime;
+  Calendar  dateTime;
   
-  Panel(float x, float y, float w, float h, Timestamp dateTime){
+  Panel(float _x, float _y, float _w, float _h, Calendar _dateTime){
     //インスタンス：座標大きさ(x,y,w,h), 年月日日(dateTime)
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.dateTime = dateTime;
+    this.x = _x;
+    this.y = _y;
+    this.w = _w;
+    this.h = _h;
+    this.dateTime = _dateTime;
   }
-  Panel(float y, float h, int width, float screen_ratio,  Timestamp dateTime){
+  Panel(float _y, float _h, int _width, float _screen_ratio,  Calendar _dateTime){
     //インスタンス：座標(y), 高さ<(h)>, 幅<画面幅(width), パネルの画面幅比(scree_ratio)>,  年月日日(dateTime)
-    this.x = width*(1 - screen_ratio)/2;
-    this.y = y;
-    this.w = width*screen_ratio;
-    this.h = h;
-    this.dateTime = dateTime;
+    this.x = width*(1 - _screen_ratio)/2;
+    this.y = _y;
+    this.w = width*_screen_ratio;
+    this.h = _h;
+    this.dateTime = _dateTime;
   }
   
   int getCount;
@@ -31,37 +31,63 @@ class Panel extends UI{//もしかするとextends Taskになる可能性あり�
   }
   
   void draw(){
-    fill(255);
-    //rect(this.x,this.y,this.w,this.h);
+    //下線を表示
     stroke(colorBlack);
-     strokeWeight(2);
+    strokeWeight(2);
     line(this.x, this.y, this.x+this.w, this.y);  //区切り線
-    fill(0);
     
-    
-    /*textボックスのクラスが必要！！*/
-    //日付表示
+    //日付を表示
     textSize(20);
-    
-     textFont(open_sans_regular);
-     textAlign(CENTER, BOTTOM);
-     fill(colorBlack);
-     text(str(this.dateTime.getDate()), this.x + 30, this.y);
-    //タスク表示
-      //ラベル（タスクの属性...予定or締切or予測)
-      //時刻
-      
-     //println(this.dateTime);
+    textFont(open_sans_regular);
+    textAlign(CENTER, BOTTOM);
+    fill(colorBlack);
+    text(this.dateTime.get(Calendar.DATE), this.x + 30, this.y);
   }
 }
 
 
-
-
-//タスク管理
-class Task {
+class TaskPanel extends Panel{
   String taskTitle;
-  Timestamp yearDateTime;
+  Calendar tasktimeData;
+  
+  TaskPanel(float _x, float _y, float _w, float _h, Calendar _dateTime){
+    super(_x, _y, _w, _h, _dateTime);
+  }
+  TaskPanel(float _y, float _h, int _width, float _screen_ratio,  Calendar _dateTime){
+    super(_y, _h, _width, _screen_ratio, _dateTime); 
+  }
+  
+  //タスク情報を取得するメソッド：タスクタイトル、予定日時データ、締切日時データ、推測日時データ
+  void getTaskDate(String _taskTitle, Calendar planDate[], Calendar deadlineDate[], Calendar predictDate[]){
+    this.taskTitle = _taskTitle;
+    for(int i = 0; i < planDate.length; i++){
+      if(isSameDate(this.dateTime, planDate[i])){//このパネルが持つ日時と予定日時が同じなら、
+        
+      }else if(isSameDate(this.dateTime, deadlineDate[i])){//このパネルが持つ日時と締切日時が同じなら、
+        
+      }else if(isSameDate(this.dateTime, predictDate[i])){//このパネルが持つ日時と推測日時が同じなら、
+        
+      }
+    }
+  }
+  
+  void draw(){
+   super.draw();
+   
+  }
   
   
+}
+ 
+  
+//年月日が同じかどうか判定する関数
+boolean isSameDate(Calendar timeA, Calendar timeB){
+  boolean isSame = false;
+  if(timeA.get(Calendar.YEAR) == timeB.get(Calendar.YEAR) &&//年が同じか 
+  timeA.get(Calendar.MONTH) == timeB.get(Calendar.MONTH) && //月が同じか
+  timeA.get(Calendar.DATE) == timeB..get(Calendar.DATE))//日が同じか
+  {
+    isSame = true;
+  }
+  return isSame;
 }
