@@ -9,3 +9,14 @@ class TextBox extends UI{
     
   }
 }
+
+
+void textBox(String text, color textColor, int textSize, float x, float y, float w, float h){
+  textAlign(CENTER, CENTER);
+  textSize(textSize);
+  fill(textColor);
+  float scalar = 0.04*textSize;
+  float a = textAscent()*scalar;
+  float b = textDescent()*scalar;
+  text(text, x + w/2 , y +(a+b)/2);
+}
