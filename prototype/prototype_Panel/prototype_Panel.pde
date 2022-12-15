@@ -36,9 +36,10 @@ void setup(){
   deadlineDate = new ArrayList<Calendar>();
   predictDate  = new ArrayList<Calendar>();
   
-  
     Calendar day = Calendar.getInstance();
     planDate.add(day);
+    
+    println(day);
     
     day = Calendar.getInstance();
     day.set(Calendar.DATE, 15);
