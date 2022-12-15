@@ -1,5 +1,7 @@
 PFont open_sans_regular, mgenplus_regular, mgenplus_heavy;
 color colorMain = #40b0a0, colorSub = #a0f0d0, colorAttention = #c03050, colorWhite = #ffffff, colorGray = #d0d0d0, colorBlack = #303030;  //色
+
+
 BoxButton boxButton ,textBoxButton ,plusButton, batuButton ;
 
 void setup(){
@@ -18,13 +20,13 @@ void setup(){
 int s;
 void draw(){
   background(255);
-  plusButton.draw();
-  textFont(mgenplus_heavy);
-  textSize(40);
-  textBoxButton.draw();
+  
   boxButton.draw();
   
+  textFont(mgenplus_heavy);//テキストボタンは、.draw前にフォントを指定する。
+  textBoxButton.draw();
   
+  plusButton.draw();
   
   batuButton.draw();
   
@@ -33,5 +35,6 @@ void draw(){
 void mousePressed(){
   boxButton.mousePressed();
   textBoxButton.mousePressed();
+  plusButton.mousePressed();
   batuButton.mousePressed();
 }
