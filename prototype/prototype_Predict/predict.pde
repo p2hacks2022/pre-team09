@@ -4,34 +4,7 @@ Calendar predict(Calendar inputPlanDate, Calendar inputDeadlineDate, float degre
   predictDate = Calendar.getInstance();
   predictDate.set(Calendar.DATE, inputPlanDate.get(Calendar.DATE));
   
-  //一年のうち何日目か
-  int planDay = inputPlanDate.get(Calendar.DAY_OF_YEAR);
-  int deadlineDay = inputDeadlineDate.get(Calendar.DAY_OF_YEAR);
-  
-  //その日の何分目か
-  int planMinute = inputPlanDate.get(Calendar.HOUR_OF_DAY)*60 + inputPlanDate.get(Calendar.MINUTE);
-  int deadlineMinute = inputDeadlineDate.get(Calendar.HOUR_OF_DAY)*60 + inputDeadlineDate.get(Calendar.MINUTE);
-  
-  /*
-  日数差を計算
-  */
-  int diffDay;
-  //うるう年を考慮して、一年何日あるか。
-  int planLengthYear = getLengthYear(inputPlanDate);
-  //西暦何年か
-  int planYear = inputPlanDate.get(Calendar.YEAR);
-  int deadlineYear = inputDeadlineDate.get(Calendar.YEAR);
-  if(planYear == deadlineYear){//予定の年と締切の年が同じとき
-    diffDay = deadlineDay - planDay;
-  }else{//予定の年と締切の年が異なるとき(今回は、一年後の予定のみ考慮する。)
-    diffDay = (deadlineDay + planLengthYear) - planDay;
-  }
-  
-  /*
-  日数差を時間差に変換
-  */
-  int diffMinute = (diffDay*24*60 - planMinute) + deadlineMinute;
-  
+  int diffMinute = diffDateMinute(inputDeadlineDate, inputPlanDate);
   /*
   推測時間(日)を計算
   */
@@ -47,4 +20,41 @@ int getLengthYear(Calendar Date){
     year = 366;
   }
   return year;
+}
+
+
+//A-Bなので、AはBより大きい（より未来）
+int diffDateMinute(Calendar A, Calendar B){
+
+  int diffDay;
+  println(A.get(Calendar.DAY_OF_YEAR));
+  int aYear = A.get(Calendar.YEAR);
+  int bYear = B.get(Calendar.YEAR);
+  
+  //一年のうち何日目か
+  int aDayOfYear = A.get(Calendar.DAY_OF_YEAR);
+  int bDayOfYear = B.get(Calendar.DAY_OF_YEAR);
+  
+  int bLenOfDate = getLengthYear(B);
+  
+  //その日の何分目か
+  int aMinute = A.get(Calendar.HOUR_OF_DAY)*60 + A.get(Calendar.MINUTE);
+  int bMinute = B.get(Calendar.HOUR_OF_DAY)*60 + B.get(Calendar.MINUTE);
+  
+  //日数差
+  if(aYear == bYear){//予定の年と締切の年が同じとき
+    diffDay = aDayOfYear - bDayOfYear;
+  }else{//予定の年と締切の年が異なるとき(今回は、一年後の予定のみ考慮する。)
+    diffDay = (aDayOfYear + bLenOfDate) - bDayOfYear;
+  }
+  
+  //分差
+  int diffDateMinute = (diffDay*24*60 - bMinute) + aMinute;
+  return diffDateMinute;
+}
+
+void swapDate(Calendar A, Calendar B){
+  Calendar tmpDate = A;
+  A = B;
+  B = tmpDate;
 }
