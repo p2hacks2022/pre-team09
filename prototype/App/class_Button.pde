@@ -61,7 +61,7 @@ class BoxButton extends Button {
 }
 
 
-//テキスト付きのボックス(四角い)ボタンのクラス
+//テキスト付きのボックス(四角い)ボタンのクラス（完了ボタン、決定ボタン）
 class TextBoxButton extends BoxButton {
   String text;//文字
   color textColor;//文字色
@@ -81,6 +81,16 @@ class TextBoxButton extends BoxButton {
 
     //テキストを表示
     textBox(text, textColor, textSize, this.x, this.y, this. w, this.h);
+  }
+  
+  void mouseClicked(){
+    if(isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h)){
+      if(page_num == 2){//入力ページの入力「決定」ボタン
+        decisionInput();
+      }else if(page_num == 3){//タスクビューのタスク「完了」ボタン
+        doneTask();
+      }
+    }
   }
 }
 
