@@ -1,0 +1,23 @@
+BoxButton plusButton;
+
+void page01_Panel_setup(){
+  setupPanel();//パネルを初期化
+  plusButton = new PlusButton( width - 80 ,height - 80 ,50, colorMain);
+}
+
+void page01_Panel_draw(){
+  
+  for(TaskPanel panel_this : panelArray){
+    panel_this.getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray);
+    panel_this.draw();
+  }
+  fill(colorWhite);
+  rect(0,0, width, 100);
+  rect(0,height - 100, width, 100);
+  plusButton.draw();
+  
+}
+
+void page01_Panel_mouseClicked(){
+  plusButton.mousePressed();
+}
