@@ -8,20 +8,20 @@ class Button extends UI {
     this.c = _c;
   }
 
-  void mouseOverStroke(String strokeType) {
+  void mouseOverStroke(String strokeType, color frameColor, float strokeWeight) {
     //マウスがボタンの上にある時に枠線を表示する関数
     //引数：strokeType...ボックスタイプの枠線("box")を、円タイプの枠線("circle")を入れる。
     if (isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h)) {//マウスがボタン上にある判定
       if (strokeType == "box") {
         //ボックスタイプが"box"の時
-        strokeWeight(20);
-        stroke(colorSub, 100);
+        strokeWeight(strokeWeight);
+        stroke(frameColor, 100);
         noFill();
         rect(this.x, this.y, this.w, this.h);//枠線表示
       } else if (strokeType == "circle") {
         //ボックスタイプが"circle"の時
-        strokeWeight(5);
-        stroke(colorSub, 20);
+        strokeWeight(strokeWeight);
+        stroke(frameColor, 100);
         noFill();
         float r_hypotenuse = calcHypotenuse(w/2, h/2);
         ellipse(this.x + this.w/2, this.y + this.h/2, 2*r_hypotenuse, 2*r_hypotenuse);//枠線表示
@@ -47,7 +47,7 @@ class BoxButton extends Button {
 
   void draw() {
     //マウス上の時の枠線表示
-    super.mouseOverStroke("box");//Buttonクラスから継承
+    super.mouseOverStroke("box", colorSub, 20);//Buttonクラスから継承
 
     //ボックスを表示
     fill(this.c);
@@ -97,7 +97,7 @@ class PlusButton extends BoxButton {
 
   void draw() {
     //マウス上の時の枠線表示
-    super.mouseOverStroke("box");//Buttonクラスから継承
+    super.mouseOverStroke("box", colorSub, 20);//Buttonクラスから継承
 
     //プラスの図形表示
     noStroke();
@@ -108,7 +108,9 @@ class PlusButton extends BoxButton {
 
   void mousePressed() {
     super.mousePressed();//ButtonクラスのmousePressed()を継承;
-    page_num = 2;
+    if(isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h)){
+      page_num = 2;//プラスボタンでは必ずページ２に遷移される。
+    }
   }
 }
 
@@ -125,11 +127,11 @@ class BatuButton extends BoxButton {
 
   void draw() {
     //マウス上の時の枠線表示
-    super.mouseOverStroke("circle");//Buttonクラスから継承
+    super.mouseOverStroke("circle", colorAttention, 8);//Buttonクラスから継承
 
     //X(バツ)の図形を表示
     fill(this.c);
-    stroke(0);
+    stroke(this.c);
     strokeWeight(this.w*line_weight);
     line(this.x, this.y, this.x + this.w, this.y + this.h);
     line(this.x, this.y + this.h, this.x + this.w, this.y);
@@ -137,6 +139,8 @@ class BatuButton extends BoxButton {
 
   void mousePressed() {
     super.mousePressed();//ButtonクラスのmousePressed()を継承;
-    page_num = 1;
+    if(isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h)){
+      page_num = 1;//バツボタンでは必ずページ１に戻る。
+    }
   }
 }

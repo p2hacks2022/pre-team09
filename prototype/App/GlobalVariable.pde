@@ -58,6 +58,17 @@ void setupPanel() {
   for (int i=-panel_number; i< panel_number; i++) {//パネル配列を格納する
     Calendar inputDate = Calendar.getInstance();
     inputDate.set(Calendar.DATE, today.get(Calendar.DATE) + i);
-    panelArray.add(new TaskPanel(50 + 55*i, 50, width, screen_ratio, inputDate));
+    panelArray.add(new TaskPanel(50 + 64*i, 50, width, screen_ratio, inputDate));
   }
+}
+
+/*
+ボタン関係
+*/
+
+BoxButton plusButton, batuButton ;
+
+void setupButton(){
+  batuButton = new BatuButton( width - 80 ,80 ,35, colorAttention);
+  plusButton = new PlusButton( width - 80 ,height - 80 ,50, colorMain);
 }

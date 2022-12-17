@@ -13,6 +13,7 @@ void setup() {
   
   setupTaskDate(); //カレンダー配列をインスタンス
   setupCsv(); //csvファイルを読み込み
+  setupButton();//ボタンクラスのインスタンス
   
   //各ページのセットアップ
   page01_Panel_setup();

@@ -1,17 +1,17 @@
 float screen_ratio = 0.9;
 
 //カレンダーパネルのクラス
-class Panel extends UI{
+class Panel extends Button {
   Calendar  dateTime;//カレンダー上の日付
   
   Panel(float _x, float _y, float _w, float _h, Calendar _dateTime){
-    super(_x, _y, _w, _h);//UIクラスから継承
+    super(_x, _y, _w, _h, colorWhite);//UIクラスから継承
     target = _y;
     this.dateTime = _dateTime;
   }
   Panel(float _y, float _h, int _width, float _screen_ratio,  Calendar _dateTime){
     //インスタンス：座標(y), 高さ<(h)>, 幅<画面幅(width), パネルの画面幅比(scree_ratio)>,  年月日日(dateTime)
-    super(_width*(1 - _screen_ratio)/2, _y, _width*_screen_ratio, _h);//UIクラスから継承
+    super(_width*(1 - _screen_ratio)/2, _y, _width*_screen_ratio, _h, colorWhite);//UIクラスから継承
     target = _y;
     this.dateTime = _dateTime;
   }
@@ -39,7 +39,7 @@ class Panel extends UI{
     noStroke();
     //line(this.x, this.y, this.x+this.w, this.y);  //区切り線
     
-    fill(100);
+    fill(100,100);
     rect(this.x+2, this.y+2, this.w, this.h);
     fill(255);
     rect(this.x, this.y, this.w, this.h);
@@ -54,6 +54,7 @@ class TaskPanel extends Panel{
   String taskType = "なし";
   String taskTime_str;
   color labelColor;
+  int taskIndex;//日付と対応するデータのインデックス
   
   TaskPanel(float _x, float _y, float _w, float _h, Calendar _dateTime){
     super(_x, _y, _w, _h, _dateTime);
@@ -63,34 +64,39 @@ class TaskPanel extends Panel{
   }
   
   //日付が一致する日時データがあるか取得するメソッド：タスクタイトル、予定日時データ、締切日時データ、推測日時データ
-  void getTaskDate(ArrayList<String> taskTitleArray, ArrayList<Calendar>  planDateArray, ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray){
+  void getTaskDate(ArrayList<String> taskTitleArray, ArrayList<Calendar>  planDateArray, ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, boolean isDone[]){
     
     for(int i = 0; i < planDateArray.size(); i++){
-      Calendar day = Calendar.getInstance();
-      //println("planDate DATE",planDateArray.get(i).get(Calendar.DATE));
-      if(isSameDate(this.dateTime, planDateArray.get(i))){//このパネルが持つ日時と予定日時が同じなら、
-        this.taskType = "予定";
-        this.labelColor = colorBlack;
-        this.taskTime_str = calendarToString_HourMinute(planDateArray.get(i));
-      }else if(isSameDate(this.dateTime, deadlineDateArray.get(i))){//このパネルが持つ日時と締切日時が同じなら、
-        this.taskType = "締切";
-        this.labelColor = colorAttention;
-        this.taskTime_str = calendarToString_HourMinute(deadlineDateArray.get(i));
-      }else if(isSameDate(this.dateTime, predictDateArray.get(i))){//このパネルが持つ日時と推測日時が同じなら、
-        this.taskType = "推測";
-        this.labelColor = colorMain;
-        this.taskTime_str = calendarToString_HourMinute(predictDateArray.get(i));
-      }
-      if(taskType != "なし"){
-      this.taskTitle = taskTitleArray.get(i);
-      
+      if(isDone[i] == false){
+        //println("planDate DATE",planDateArray.get(i).get(Calendar.DATE));
+        if(isSameDate(this.dateTime, planDateArray.get(i))){//このパネルが持つ日時と予定日時が同じなら、
+          this.taskType = "予定";
+          this.labelColor = colorBlack;
+          taskIndex = i;
+          this.taskTime_str = calendarToString_HourMinute(planDateArray.get(i));
+        }else if(isSameDate(this.dateTime, deadlineDateArray.get(i))){//このパネルが持つ日時と締切日時が同じなら、
+          this.taskType = "締切";
+          this.labelColor = colorAttention;
+          taskIndex = i;
+          this.taskTime_str = calendarToString_HourMinute(deadlineDateArray.get(i));
+        }else if(isSameDate(this.dateTime, predictDateArray.get(i))){//このパネルが持つ日時と推測日時が同じなら、
+          this.taskType = "推測";
+          this.labelColor = colorMain;
+          this.taskTime_str = calendarToString_HourMinute(predictDateArray.get(i));
+          taskIndex = i;
+        }
+        if(taskType != "なし"){
+        this.taskTitle = taskTitleArray.get(i);
+        }
       }
     }
     //println(this.taskTitle);
   }
   
   void draw(){
+   super.mouseOverStroke("box", colorSub, 12);//Buttonクラスから継承
    super.draw();//Panelクラスから継承
+   
    
    //日付が一致するタスクがあったときの表示
    if(taskType != "なし"){
@@ -114,6 +120,12 @@ class TaskPanel extends Panel{
      textAlign(CENTER, CENTER);
      textBox(taskTime_str, colorBlack, 20,x_label + 70,this.y, w_label, this.h);
    }  
+  }
+  
+  void mousePressed(){
+    if(isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h) && taskType != "なし"){
+      page_num = 3;//タスクビューページに移動
+    }
   }
 }
 
