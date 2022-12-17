@@ -8,5 +8,5 @@ void doneTask(){
   println("isDone:",isDone.get(targetIndex));
   
   //信用度を更新
-  updateConfidence(degreeOfConfidence, planDateArray.get(targetIndex) ,deadlineDateArray.get(targetIndex), predictDateArray.get(targetIndex),finishDateArray.get(targetIndex));
+  updateConfidence(degreeOfConfidence, planDateArray.get(targetIndex) ,deadlineDateArray.get(targetIndex), predictDateArray.get(targetIndex),nowDate);
 }

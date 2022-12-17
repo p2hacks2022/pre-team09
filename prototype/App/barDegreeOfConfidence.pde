@@ -6,7 +6,7 @@ void barDegreeOfConfidence(float x,float y,float w,float h,float r){//信頼度�
   noStroke();
   fill(200);
   rect(x,y,w,h);//元のバー
-  fill(0,200,150);
+  fill(colorMain);
   rect(x,y,w*r,h);//信頼度のバー
   /*バーの色はあとで変更する*/
 }

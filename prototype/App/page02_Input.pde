@@ -66,6 +66,7 @@ void namuru_input_draw() {
   formbox_y = 200;
 
   fill(colorSub);
+  noStroke();
   rect(20, formbox_y, 15, 50);
   stroke(colorBlack);
   strokeWeight(2);

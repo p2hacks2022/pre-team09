@@ -88,6 +88,9 @@ class TextBoxButton extends BoxButton {
     if (isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h)) {
       if (page_num == 2) {//入力ページの入力「決定」ボタ
         decisionInput();
+        for (int i = 0; i < 11; i++) {
+          field[i].setBounds(800, -100, 300, 45);
+        }
       } else if (page_num == 3) {//タスクビューのタスク「完了」ボタン
         doneTask();
       }
