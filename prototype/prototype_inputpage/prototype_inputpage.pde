@@ -156,74 +156,10 @@ void draw() {
   text("分", 460, formbox_y + 95);  //タイトルを表示
 }
 
+//仮の入力完了
 void mouseClicked() {
   if (mouseX>500 && mouseX<540&&mouseY>900&&mouseY<940) {
-    String instance;
-    for (int i = 0; i < field.length; i++) {
-      instance = field[i].getText();
-      if (instance == null) {//入力に空欄があればfalse
-        success = false;
-        break;
-      } else if (i == 1) {//年の判定
-        //4桁以下または数値以外ならfalseを返す
-        if (int(instance) < 1000 || int(instance)==0) {
-          success = false;
-          break;
-        }
-      } else if (i > 1) {//年以外の判定
-        //2桁では無かったらfalseを返す
-        if (int(instance)>100) {
-          success = false;
-          break;
-        }
-      } else if (i == 2) {//月の判定
-        //月と認識できなければfalseを返す
-        if (int(instance)<13 || int(instance) == 0) {
-          success = false;
-          break;
-        }
-      } else if (i == 3) {//日の判定
-        //日と認識できなければfalseを返す
-        if (int(instance) > 31 || int(instance)==0) {
-          success = false;
-          break;
-        }
-      } else if (i == 4) {//時の判定
-        //時と認識できなければfalseを返す。
-        if (int(instance) > 25) {
-          success = false;
-          break;
-        }
-      } else if (i == 5) {//分の判定
-        //分と認識できなければfalseを返す。
-        if (int(instance) >60) {
-          success = false;
-          break;
-        }
-      } else {
-        success = true;
-      }
-    }
-    if (success) {
-      for (int i = 0; i<6; i++) {
-        textName[i] = field[i].getText();
-        println(textName[i]);
-      }
-      dateTime.set(Calendar.YEAR, int(textName[1]));
-      dateTime.set(Calendar.MONTH, int(textName[2]));
-      dateTime.set(Calendar.DATE, int(textName[3]));
-      dateTime.set(Calendar.HOUR, int(textName[4]));
-      dateTime.set(Calendar.MINUTE, int(textName[5]));
-      /*
-       println("Y:"+dateTime.get(Calendar.YEAR));
-       println("M:"+dateTime.get(Calendar.MONTH));
-       println("D:"+dateTime.get(Calendar.DATE));
-       println("H:"+dateTime.get(Calendar.HOUR));
-       println("m:"+dateTime.get(Calendar.MINUTE));
-       */
-    } else {
-      print("it's not over");
-    }
+    
   }
 }
 
