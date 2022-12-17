@@ -8,32 +8,23 @@ void input_process() {
   dataCount = import_csv.getRowCount();
   data_genre = import_csv.getColumnCount();//列数
   
-  isDone = new ArrayList<Integer>();//データの総数を受けてisDone配列を確保
-  
   
   //taskTitleArrayにcsvの一列、isDoneにcsvの21列目を入れる。
   for (int i = 0; i < data_total; i++) {
-    taskTitleArray.add(import_csv.getString(i, 0));
-    
+    taskTitleArray.add(import_csv.getString(i, 0)); 
     //dataBaseにcsvの２列目から２０列目までを挿入
     ArrayList base = new ArrayList<String>();
-    for (int j = 1; j < data_genre-1; j++) {
+    for (int j = 0; j < data_genre; j++) {
       base.add(import_csv.getString(i, j));
     }
     dataBase.add(base);//追加
-    
-    //２１列目（完了か否か）をisDone(boolean配列)に入れる。
-    if(dataBase.get(i).get(19) == "0"){
-      isDone.add(0);
-    }else if(dataBase.get(i).get(19) =="1"){
-      isDone.add(1);
-    }
   }
   for (int i=0; i<data_total; i++) {
-    dataBase_to_Array(dataBase, planDateArray, i, 0);
-    dataBase_to_Array(dataBase, deadlineDateArray, i, 5);
-    dataBase_to_Array(dataBase, predictDateArray, i, 10);
-    dataBase_to_Array(dataBase, finishDateArray, i, 15);
+    dataBase_to_Array(dataBase, planDateArray, i, 1);
+    dataBase_to_Array(dataBase, deadlineDateArray, i, 6);
+    dataBase_to_Array(dataBase, predictDateArray, i, 11);
+    dataBase_to_Array(dataBase, finishDateArray, i, 16);
+    isDone.add(int(dataBase.get(i).get(21)));
   }
 }
 
