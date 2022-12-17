@@ -7,24 +7,26 @@ Calendar dateTime;
 JLayeredPane pane;
 JTextField[] field;
 
+String[] textInput = new String[11];
+String errorMessage = "";
+
 BoxButton Button_kanryo, Button_kettei;
 
-void page02_Input_setup(){
+void page02_Input_setup() {
   namuru_input_setup();
 }
 
-void page02_Input_draw(){
+void page02_Input_draw() {
   namuru_input_draw();
   batuButton.draw();
 }
 
-void page02_Input_mouseClicked(){
-  Button_kanryo.mousePressed();
+void page02_Input_mouseClicked() {
   Button_kettei.mousePressed();
   batuButton.mousePressed();
 }
 
-void namuru_input_setup(){
+void namuru_input_setup() {
   size(540, 960);
   rect(500, 900, 40, 40);
   dateTime = Calendar.getInstance();
@@ -37,8 +39,7 @@ void namuru_input_setup(){
   Canvas canvas = (Canvas) surface.getNative();
   pane = (JLayeredPane) canvas.getParent().getParent();
 
-  Button_kanryo = new TextBoxButton("完了", colorWhite, 25, 20, height - 70, 200, 50, colorMain);
-  Button_kettei = new TextBoxButton("決定", colorBlack, 25, 230, height - 70, 200, 50, colorSub);
+  Button_kettei = new TextBoxButton("決定", colorBlack, 25, 20, height - 70, 200, 50, colorSub);
 
   // 1行のみのテキストボックスを作成
   field = new JTextField[11];
@@ -50,10 +51,9 @@ void namuru_input_setup(){
 }
 
 
-void namuru_input_draw(){
+void namuru_input_draw() {
   background(colorWhite);
   textFont(mgenplus_heavy);//テキストボタンは、.draw前にフォントを指定する。
-  Button_kanryo.draw();
   Button_kettei.draw();
 
   String title = "入力";  //画面のタイトル
@@ -112,7 +112,7 @@ void namuru_input_draw(){
   fill(colorBlack);
   textAlign(LEFT, BOTTOM);
   text("分", 460, formbox_y + 95);  //タイトルを表示
-  
+
   formbox_y += 150;
 
   fill(colorAttention);
@@ -147,89 +147,99 @@ void namuru_input_draw(){
   fill(colorBlack);
   textAlign(LEFT, BOTTOM);
   text("分", 460, formbox_y + 95);  //タイトルを表示
-}
-
-/*class TextBoxButton extends BoxButton{
-  String text;//文字
-  color textColor;//文字色
-  int textSize;//文字のサイズ
-  TextBoxButton(String _text, color _textColor, int _textSize, float _x, float _y, float _w, float _h, color _c){
-    //コンストラクタ：文字(text), 文字色(textColor), 文字のサイズ(textSize), 座標大きさ(x,y,w,h), ボックスの色(c);
-    super(_x, _y, _w, _h, _c);//Buttonクラスのコンストラクタを継承
-    this.text = _text;
-    this.textColor = _textColor;
-    this.textSize = _textSize;
-  }
   
-  void draw(){
-    //マウス上の時の枠線表示
-    //ボックスの表示
-    super.draw();//BoxButtonクラスのdraw()を継承
-    
-    //テキストを表示
-    textBox(text, textColor, textSize, this.x, this.y, this. w, this.h);
-  }
-  void mousePressed(){
-    super.mousePressed();
-   String instance;
-    for (int i = 0; i < field.length; i++) {
-      instance = field[i].getText();
-      int usage = i%5 ;
-      if (instance == null) {//入力に空欄があればfalse
-        success = false;
+  textFont(mgenplus_regular, 15);//エラー文を表示
+  fill(colorAttention);
+  textAlign(LEFT, BOTTOM);
+  text(errorMessage, 50, 580 );
+}
+void decisionInput() {
+  String instance;
+  boolean check = false;
+  for (int i = 0; i < 11; i++) {
+    instance = null;
+    instance = field[i].getText();
+    int usage = i%5 ;
+    if (instance == null) {//入力に空欄があればfalse
+      println("space in");
+      check = false;
+      break;
+    } else if (usage == 1) {//年の判定
+      //4桁以下または数値以外ならfalseを返す
+      if (int(instance) < 1000 || int(instance)==0) {
+        check = false;
         break;
-      } else if (usage == 1) {//年の判定
-        //4桁以下または数値以外ならfalseを返す
-        if (int(instance) < 1000 || int(instance)==0) {
-          success = false;
-          break;
-        }
-      } else if (usage > 1) {//年以外の判定
-        //2桁では無かったらfalseを返す
-        if (int(instance)>100) {
-          success = false;
-          break;
-        }
-      } else if (usage == 2) {//月の判定
-        //月と認識できなければfalseを返す
-        if (int(instance)<13 || int(instance) == 0) {
-          success = false;
-          break;
-        }
-      } else if (usage == 3) {//日の判定
-        //日と認識できなければfalseを返す
-        if (int(instance) > 31 || int(instance)==0) {
-          success = false;
-          break;
-        }
-      } else if (usage == 4) {//時の判定
-        //時と認識できなければfalseを返す。
-        if (int(instance) > 25) {
-          success = false;
-          break;
-        }
-      } else if (usage == 5) {//分の判定
-        //分と認識できなければfalseを返す。
-        if (int(instance) >60) {
-          success = false;
-          break;
-        }
-      } else {
-        success = true;
       }
-    }
-    if (success) {
-      for (int i = 0; i<6; i++) {
-        textName[i] = field[i].getText();
-        println(textName[i]);
+    } else if (usage > 1) {//年以外の判定
+      //2桁では無かったらfalseを返す
+      if (int(instance)>100) {
+        check = false;
+        break;
       }
-      dateTime.set(Calendar.YEAR, int(textName[1]));
-      dateTime.set(Calendar.MONTH, int(textName[2]));
-      dateTime.set(Calendar.DATE, int(textName[3]));
-      dateTime.set(Calendar.HOUR, int(textName[4]));
-      dateTime.set(Calendar.MINUTE, int(textName[5]));
+    } else if (usage == 2) {//月の判定
+      //月と認識できなければfalseを返す
+      if (int(instance)<13 || int(instance) == 0) {
+        check = false;
+        break;
+      }
+    } else if (usage == 3) {//日の判定
+      //日と認識できなければfalseを返す
+      if (int(instance) > 31 || int(instance)==0) {
+        check = false;
+        break;
+      }
+    } else if (usage == 4) {//時の判定
+      //時と認識できなければfalseを返す。
+      if (int(instance) > 25) {
+        check = false;
+        break;
+      }
+    } else if (usage == 5) {//分の判定
+      //分と認識できなければfalseを返す。
+      if (int(instance) >60) {
+        check = false;
+        break;
+      }
     } else {
-      print("it's not over");
-    } 
+      check = true;
+    }
   }
+  if (check) {
+    println("sucess");
+    for (int i = 0; i<6; i++) {
+      textInput[i] = field[i].getText();
+    }
+    errorMessage ="";
+  } else {
+    errorMessage ="※未記入欄または不適切な入力があります。";
+    println("it's not over");
+    
+  }
+}
+/*
+float degreeOfConfidence = 0.5;
+//inputTitle(String)
+//inputPlanDate...入力された予定日時、inputDeadlineDate..入力された締切日時
+void addArrayList(){
+  //推測日時を算出
+  Calendar predictDate = predict(inputPlanDate, inputDeadlineDate, degreeOfConfidence);
+
+  //finishDateに仮置きする日付
+  Calendar prefinishDate;
+  prefinishDate = Calendar.getInstance();
+  prefinishDate.set(Calendar.YEAR, 1000);
+
+
+
+  //タスクタイトルを追加
+  taskTitleArray.add(inputTitle);
+
+  //それぞれの日時をカレンダーArrayListに追加
+  planDateArray.add(inputPlanDate);
+  deadlineDateArray.add(inputDeadlineDate);
+  predictDateArray.add(predictDate);
+  finishDateArray.add(prefinishDate);
+
+  //未完了を追加
+  isDone.add(0);
 }*/
