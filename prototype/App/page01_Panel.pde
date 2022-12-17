@@ -2,15 +2,15 @@
 
 void page01_Panel_setup(){
   setupPanel();//パネルを初期化
-  for(TaskPanel panel_this : panelArray){
-    panel_this.getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray, isDone);
+  for(int i=0; i<panelArray.size(); i++){
+    panelArray.get(i).getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray, isDone);
   }
 }
 
 void page01_Panel_draw(){
   
   for(TaskPanel panel_this : panelArray){
-    //panel_this.getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray);
+    panel_this.getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray, isDone);
     panel_this.draw();
   }
   fill(colorWhite);

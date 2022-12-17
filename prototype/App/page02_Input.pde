@@ -14,6 +14,7 @@ BoxButton Button_kanryo, Button_kettei;
 
 void page02_Input_setup() {
   namuru_input_setup();
+  Button_kettei = new TextBoxButton("決定", colorBlack, 25, 20, height - 70, 200, 50, colorSub);
 }
 
 void page02_Input_draw() {
@@ -27,7 +28,6 @@ void page02_Input_mouseClicked() {
 }
 
 void namuru_input_setup() {
-  size(540, 960);
   rect(500, 900, 40, 40);
   dateTime = Calendar.getInstance();
 
@@ -39,7 +39,7 @@ void namuru_input_setup() {
   Canvas canvas = (Canvas) surface.getNative();
   pane = (JLayeredPane) canvas.getParent().getParent();
 
-  Button_kettei = new TextBoxButton("決定", colorBlack, 25, 20, height - 70, 200, 50, colorSub);
+
 
   // 1行のみのテキストボックスを作成
   field = new JTextField[11];
@@ -147,12 +147,14 @@ void namuru_input_draw() {
   fill(colorBlack);
   textAlign(LEFT, BOTTOM);
   text("分", 460, formbox_y + 95);  //タイトルを表示
-  
+
   textFont(mgenplus_regular, 15);//エラー文を表示
   fill(colorAttention);
   textAlign(LEFT, BOTTOM);
   text(errorMessage, 50, 580 );
 }
+
+
 void decisionInput() {
   String instance;
   boolean check = false;
@@ -206,21 +208,35 @@ void decisionInput() {
   }
   if (check) {
     println("sucess");
-    for (int i = 0; i<6; i++) {
+    for (int i = 0; i<11; i++) {
       textInput[i] = field[i].getText();
     }
     errorMessage ="";
+    addArray();
+    for (int i = 0; i < 11; i++) {
+      field[i].setBounds(800, -100, 300, 45);
+    }
   } else {
     errorMessage ="※未記入欄または不適切な入力があります。";
     println("it's not over");
-    
   }
 }
-/*
-float degreeOfConfidence = 0.5;
-//inputTitle(String)
-//inputPlanDate...入力された予定日時、inputDeadlineDate..入力された締切日時
-void addArrayList(){
+
+
+void addArray() {
+  String inputTitle = textInput[0];
+
+  //input用の日時をインスタンス
+  Calendar inputPlanDate, inputDeadlineDate;
+  inputPlanDate = Calendar.getInstance();
+  inputDeadlineDate = Calendar.getInstance();
+
+  inputPlanDate.set(int(textInput[1]), int(textInput[2])-1, int(textInput[3]), int(textInput[4]), int(textInput[5]));
+  inputDeadlineDate.set(int(textInput[6]), int(textInput[7])-1, int(textInput[8]), int(textInput[9]), int(textInput[10]));
+
+  println(inputPlanDate.get(Calendar.DATE));
+
+  //inputPlanDate...入力された予定日時、inputDeadlineDate..入力された締切日時
   //推測日時を算出
   Calendar predictDate = predict(inputPlanDate, inputDeadlineDate, degreeOfConfidence);
 
@@ -232,7 +248,9 @@ void addArrayList(){
 
 
   //タスクタイトルを追加
-  taskTitleArray.add(inputTitle);
+  taskTitleArray.add(textInput[0]);
+  println(taskTitleArray.get(0));
+    println(taskTitleArray.get(1));
 
   //それぞれの日時をカレンダーArrayListに追加
   planDateArray.add(inputPlanDate);
@@ -242,4 +260,34 @@ void addArrayList(){
 
   //未完了を追加
   isDone.add(0);
-}*/
+  
+  
+  //println(planDateArray.get(1).get(Calendar.DATE));
+}
+/*
+float degreeOfConfidence = 0.5;
+ //inputTitle(String)
+ //inputPlanDate...入力された予定日時、inputDeadlineDate..入力された締切日時
+ void addArrayList(){
+ //推測日時を算出
+ Calendar predictDate = predict(inputPlanDate, inputDeadlineDate, degreeOfConfidence);
+ 
+ //finishDateに仮置きする日付
+ Calendar prefinishDate;
+ prefinishDate = Calendar.getInstance();
+ prefinishDate.set(Calendar.YEAR, 1000);
+ 
+ 
+ 
+ //タスクタイトルを追加
+ taskTitleArray.add(inputTitle);
+ 
+ //それぞれの日時をカレンダーArrayListに追加
+ planDateArray.add(inputPlanDate);
+ deadlineDateArray.add(inputDeadlineDate);
+ predictDateArray.add(predictDate);
+ finishDateArray.add(prefinishDate);
+ 
+ //未完了を追加
+ isDone.add(0);
+ }*/

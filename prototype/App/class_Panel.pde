@@ -58,36 +58,37 @@ class TaskPanel extends Panel{
   
   TaskPanel(float _x, float _y, float _w, float _h, Calendar _dateTime){
     super(_x, _y, _w, _h, _dateTime);
+    taskTitle = "";
   }
   TaskPanel(float _y, float _h, int _width, float _screen_ratio,  Calendar _dateTime){
-    super(_y, _h, _width, _screen_ratio, _dateTime); 
+    super(_y, _h, _width, _screen_ratio, _dateTime);
+    taskTitle = "";
   }
   
   //日付が一致する日時データがあるか取得するメソッド：タスクタイトル、予定日時データ、締切日時データ、推測日時データ
   void getTaskDate(ArrayList<String> taskTitleArray, ArrayList<Calendar>  planDateArray, ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Integer> isDone){
     
-    for(int i = 0; i < planDateArray.size(); i++){
-      //println("isDone",isDone);
-      if(isDone.get(i) == 0){
+    for(int i = 0; i < taskTitleArray.size(); i++){
+      if(isDone.get(i) == 0){//もし完了していなかったら
         //println("planDate DATE",planDateArray.get(i).get(Calendar.DATE));
         if(isSameDate(this.dateTime, planDateArray.get(i))){//このパネルが持つ日時と予定日時が同じなら、
           this.taskType = "予定";
           this.labelColor = colorBlack;
           taskIndex = i;
           this.taskTime_str = calendarToString_HourMinute(planDateArray.get(i));
+          this.taskTitle = taskTitleArray.get(i);
         }else if(isSameDate(this.dateTime, deadlineDateArray.get(i))){//このパネルが持つ日時と締切日時が同じなら、
           this.taskType = "締切";
           this.labelColor = colorAttention;
           taskIndex = i;
           this.taskTime_str = calendarToString_HourMinute(deadlineDateArray.get(i));
+          this.taskTitle = taskTitleArray.get(i);
         }else if(isSameDate(this.dateTime, predictDateArray.get(i))){//このパネルが持つ日時と推測日時が同じなら、
           this.taskType = "推測";
           this.labelColor = colorMain;
           this.taskTime_str = calendarToString_HourMinute(predictDateArray.get(i));
           taskIndex = i;
-        }
-        if(taskType != "なし"){
-        this.taskTitle = taskTitleArray.get(i);
+          this.taskTitle = taskTitleArray.get(i);
         }
       }
     }
@@ -98,13 +99,12 @@ class TaskPanel extends Panel{
    super.mouseOverStroke("box", colorSub, 12);//Buttonクラスから継承
    super.draw();//Panelクラスから継承
    
-   
    //日付が一致するタスクがあったときの表示
    if(taskType != "なし"){
      //タスクタイトル表示
      textFont(mgenplus_heavy);
      textAlign(LEFT, CENTER);
-     textBox(taskTitle, colorBlack, 20, this.x+80, this.y, 30, 50);
+     textBox(this.taskTitle, colorBlack, 20, this.x+80, this.y, 30, 50);
      
      float label_ratio  = 0.7;
      float x_label = width - 170, y_label = this.y + this.h*(1-label_ratio)/2, w_label = 60, h_label = this.h*label_ratio;
