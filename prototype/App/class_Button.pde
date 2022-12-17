@@ -86,7 +86,7 @@ class TextBoxButton extends BoxButton {
   void mouseClicked(){
     if(isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h)){
       if(page_num == 2){//入力ページの入力「決定」ボタン
-        decisionInput();
+        //decisionInput();
       }else if(page_num == 3){//タスクビューのタスク「完了」ボタン
         doneTask();
       }

@@ -30,7 +30,16 @@ void page03_Taskview_setup(){
 }
 
 void page03_Taskview_draw(){
+  dateDraw();
   batuButton.draw();
+}
+
+void page03_Taskview_mouseClicked(){
+  batuButton.mousePressed();
+}
+
+
+void dateDraw(){
   noStroke();
   fill(colorWhite);
   rect(0, 0, 540, 960);//背景白
@@ -52,11 +61,6 @@ void page03_Taskview_draw(){
   textCalendar(deadlineDateArray.get(targetIndex), frombox_y,"推測",colorMain);
   frombox_y+=150;
   textCalendar(predictDateArray.get(targetIndex), frombox_y,"締切",colorAttention);
-
-}
-
-void page03_Taskview_mouseClicked(){
-  batuButton.mousePressed();
 }
 
 void textCalendar(Calendar Date, int drawHigh, String Label, color Color){
@@ -146,4 +150,7 @@ String addZeroMinute(int time){
   return time_string;
 }
 
+void doneTask(){
+  
+}
  
