@@ -31,12 +31,23 @@ void setupConfidence(float degreeOfConfidence, ArrayList<Calendar>  planDateArra
   }
 }
 
-void updateConfidence(float degreeOfConfidence, Calendar planDate ,Calendar deadlineDate, Calendar predictDate, Calendar finishDate){
+float updateConfidence(float degreeOfConfidence, Calendar planDate ,Calendar deadlineDate, Calendar predictDate, Calendar finishDate){
   float alpha = 0, beta = 0;  
-  changeParam(alpha, beta, planDate, deadlineDate, predictDate, finishDate);
+  if(isPreDate(finishDate, planDate) == true){
+    //予定前に完了していたら、信用度を普通に上げる。（使用パラメータ：alpha_prePlan）
+    alpha = alpha_prePlan;
+  }else if(isPreDate(finishDate, predictDate) == true){
+    //予定後・推測前に完了していたら、信用度を少し上げる。（使用パラメータ：alpha_postPlan）
+    alpha = alpha_postPlan;
+  }else if(isPreDate(finishDate, deadlineDate) == true){
+    //推測後・締切前に完了していたら、信用度を少し下げる。（使用パラメータ：beta_preDeadline）
+    beta = beta_preDeadline;
+  }
   float r = degreeOfConfidence;
   degreeOfConfidence = r + (1 - r)*alpha - r*beta;
   println(alpha, beta);
+  println( degreeOfConfidence);
+  return degreeOfConfidence;
 }
 
 

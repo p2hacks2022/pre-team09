@@ -22,7 +22,7 @@ void page03_Taskview_setup(){
 void page03_Taskview_draw(){
   dateDraw();
   batuButton.draw();
-  println(targetIndex);
+  //println(targetIndex);
   //println(taskTitleArray.get(targetIndex));
   
   textFont(mgenplus_heavy);
