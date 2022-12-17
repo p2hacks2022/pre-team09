@@ -7,7 +7,7 @@ void doneTask(){
   isDone.set(targetIndex, 1);
   
   //信用度を更新
-  
+  updateConfidence(degreeOfConfidence, planDateArray.get(targetIndex) ,deadlineDateArray.get(targetIndex), predictDateArray.get(targetIndex),finishDateArray.get(targetIndex));
 }
 
 /*

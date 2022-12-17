@@ -71,6 +71,6 @@ void setupPanel() {
 BoxButton plusButton, batuButton ;
 
 void setupButton(){
-  batuButton = new BatuButton( width - 80 ,80 ,35, colorAttention);
+  batuButton = new BatuButton( width - 60 ,60 ,20, colorAttention);
   plusButton = new PlusButton( width - 80 ,height - 80 ,50, colorMain);
 }

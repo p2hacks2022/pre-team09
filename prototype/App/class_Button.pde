@@ -80,6 +80,7 @@ class TextBoxButton extends BoxButton {
     super.draw();//BoxButtonクラスのdraw()を継承
 
     //テキストを表示
+    textAlign(CENTER,CENTER);
     textBox(text, textColor, textSize, this.x, this.y, this. w, this.h);
   }
 

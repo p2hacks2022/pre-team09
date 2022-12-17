@@ -41,7 +41,6 @@ void dateDraw(){
   rect(0, 0, 540, 960);//背景白
   fill(colorBlack);
   textFont(mgenplus_heavy);
-  text("入力", 20, 30);//入力文字列
   
   frombox_y=80;
   drawRect(colorSub,frombox_y);//タイトル頭

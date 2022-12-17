@@ -58,9 +58,9 @@ void namuru_input_draw() {
 
   String title = "入力";  //画面のタイトル
   textFont(mgenplus_heavy, 40);
-  textAlign(LEFT, TOP);
+  textAlign(LEFT, BOTTOM);
   fill(colorBlack);
-  text(title, 20, 10);  //タイトルを表示
+  text(title, 20, 100);  //タイトルを表示
 
   int formbox_y;
   formbox_y = 200;
