@@ -67,6 +67,7 @@ class TaskPanel extends Panel{
   void getTaskDate(ArrayList<String> taskTitleArray, ArrayList<Calendar>  planDateArray, ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Integer> isDone){
     
     for(int i = 0; i < planDateArray.size(); i++){
+      //println("isDone",isDone);
       if(isDone.get(i) == 0){
         //println("planDate DATE",planDateArray.get(i).get(Calendar.DATE));
         if(isSameDate(this.dateTime, planDateArray.get(i))){//このパネルが持つ日時と予定日時が同じなら、

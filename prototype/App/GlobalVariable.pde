@@ -44,6 +44,8 @@ void setupTaskDate() {
   deadlineDateArray = new ArrayList<Calendar>();
   predictDateArray  = new ArrayList<Calendar>();
   finishDateArray   = new ArrayList<Calendar>();
+  
+  isDone = new ArrayList<Integer>();//データの総数を受けてisDone配列を確保
 }
 
 /*

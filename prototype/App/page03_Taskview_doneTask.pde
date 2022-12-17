@@ -10,6 +10,7 @@ void doneTask(){
   
 }
 
+/*
 //inputTitle(String)
 //inputPlanDate...入力された予定日時、inputDeadlineDate..入力された締切日時
 void addArrayList(){
@@ -35,8 +36,4 @@ void addArrayList(){
   //未完了を追加
   isDone.add(0);
 }
-
-void addArrayList(Calendar Date, ArrayList<Calendar> DateArray,ArrayList<Calendar> isDone){
-  Date
-
-}
+*/
