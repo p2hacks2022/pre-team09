@@ -1,5 +1,5 @@
 int page_num = 1; //ページ数
-
+float degreeOfConfidence = 0.5;
 //フォント
 PFont open_sans_regular, mgenplus_regular, mgenplus_heavy;
 
@@ -35,7 +35,7 @@ ArrayList<Calendar> predictDateArray; //推測日時のArray
 ArrayList<Calendar> finishDateArray; //終了日時のArray
 
 //完了したかどうかの配列
-boolean isDone[];
+ArrayList<Integer> isDone;
 
 void setupTaskDate() {
   taskTitleArray = new ArrayList<String>();
