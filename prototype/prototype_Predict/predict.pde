@@ -57,4 +57,24 @@ void swapDate(Calendar A, Calendar B){
   Calendar tmpDate = A;
   A = B;
   B = tmpDate;
+} //<>//
+
+
+boolean isPreDate(Calendar DateA, Calendar DateB){
+  boolean isPreDate = false;
+  
+  //予定日と完了日を比較
+  if(DateA.get(Calendar.YEAR) < DateB.get(Calendar.YEAR)){//年を比較
+    isPreDate = true;
+  }else if(DateA.get(Calendar.MONTH) < DateB.get(Calendar.MONTH)){
+    isPreDate = true;
+  }else if(DateA.get(Calendar.DAY_OF_MONTH) < DateB.get(Calendar.DAY_OF_MONTH)){
+    isPreDate = true;
+  }else if (DateA.get(Calendar.HOUR_OF_DAY) < DateB.get(Calendar.HOUR_OF_DAY)){
+    isPreDate = true;
+  }else if(DateA.get(Calendar.MINUTE) < DateB.get(Calendar.MINUTE)){
+    isPreDate = true;
+  }
+  
+  return isPreDate;
 }
