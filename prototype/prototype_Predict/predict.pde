@@ -9,7 +9,7 @@ Calendar predict(Calendar inputPlanDate, Calendar inputDeadlineDate, float degre
   推測時間(日)を計算
   */
   int predictMinute = int(inputPlanDate.get(Calendar.MINUTE) + diffMinute*(1-degreeOfConfidence));
-  predictDate.set(Calendar.MINUTE, predictMinute);//足す
+  predictDate.set(Calendar.MINUTE, predictMinute); //足す
   return predictDate;
 }
 
@@ -58,7 +58,6 @@ void swapDate(Calendar A, Calendar B){
   A = B;
   B = tmpDate;
 } //<>//
-
 
 boolean isPreDate(Calendar DateA, Calendar DateB){
   boolean isPreDate = false;

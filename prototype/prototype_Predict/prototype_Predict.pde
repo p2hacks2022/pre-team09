@@ -4,6 +4,7 @@ import java.util.ArrayList;
 Calendar DateA, DateB;
 
 float degreeOfConfidence = 0.5;
+
 void setup(){
   DateA = Calendar.getInstance();
   DateB = Calendar.getInstance();
