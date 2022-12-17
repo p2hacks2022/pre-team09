@@ -89,6 +89,8 @@ class TaskPanel extends Panel{
           this.taskTime_str = calendarToString_HourMinute(predictDateArray.get(i));
           taskIndex = i;
           this.taskTitle = taskTitleArray.get(i);
+        }else if(isDone.get(i) == 1){
+          println("完了",this.taskTitle);
         }
       }
     }
