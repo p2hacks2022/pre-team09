@@ -28,6 +28,7 @@ int disp; //switch用の画面の番号
 float achive_all; //達成率
 PFont fontEN40, fontEN35, fontEN25, fontJP40, fontJP30, fontJP25, fontJP20;  //フォント
 color colorMain = #40b0a0, colorSub = #a0f0d0, colorAttention = #c03050, colorWhite = #ffffff, colorGray = #d0d0d0, colorBlack = #303030;  //色
+
 float screen_ratio = 0.9;
 
 void setup(){
