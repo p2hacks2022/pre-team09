@@ -68,33 +68,33 @@ class TaskPanel extends Panel{
   //日付が一致する日時データがあるか取得するメソッド：タスクタイトル、予定日時データ、締切日時データ、推測日時データ
   void getTaskDate(ArrayList<String> taskTitleArray, ArrayList<Calendar>  planDateArray, ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Integer> isDone){
     
-    for(int i = 0; i < taskTitleArray.size(); i++){
+    for(int i = 0; i < dataCount; i++){
       if(isDone.get(i) == 0){//もし完了していなかったら
         //println("planDate DATE",planDateArray.get(i).get(Calendar.DATE));
         if(isSameDate(this.dateTime, planDateArray.get(i))){//このパネルが持つ日時と予定日時が同じなら、
           this.taskType = "予定";
           this.labelColor = colorBlack;
-          taskIndex = i;
+          this.taskIndex = i;
           this.taskTime_str = calendarToString_HourMinute(planDateArray.get(i));
           this.taskTitle = taskTitleArray.get(i);
         }else if(isSameDate(this.dateTime, deadlineDateArray.get(i))){//このパネルが持つ日時と締切日時が同じなら、
           this.taskType = "締切";
           this.labelColor = colorAttention;
-          taskIndex = i;
+          this.taskIndex = i;
           this.taskTime_str = calendarToString_HourMinute(deadlineDateArray.get(i));
           this.taskTitle = taskTitleArray.get(i);
         }else if(isSameDate(this.dateTime, predictDateArray.get(i))){//このパネルが持つ日時と推測日時が同じなら、
           this.taskType = "推測";
           this.labelColor = colorMain;
           this.taskTime_str = calendarToString_HourMinute(predictDateArray.get(i));
-          taskIndex = i;
+          this.taskIndex = i;
           this.taskTitle = taskTitleArray.get(i);
         }else if(isDone.get(i) == 1){
           println("完了",this.taskTitle);
+           this.taskType = "なし";
         }
       }
     }
-    //println(this.taskTitle);
   }
   
   void draw(){
@@ -127,6 +127,7 @@ class TaskPanel extends Panel{
   
   void mousePressed(){
     if(isOverMouse(mouseX, mouseY, this.x, this.y, this.w, this.h) && taskType != "なし"){
+      targetIndex = this.taskIndex;
       page_num = 3;//タスクビューページに移動
     }
   }

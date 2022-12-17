@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Calendar;
 import javax.swing.JTextField;
 import javax.swing.JComponent;
 Calendar dateTime;
@@ -13,12 +12,12 @@ String errorMessage = "";
 BoxButton Button_kanryo, Button_kettei;
 
 void page02_Input_setup() {
-  namuru_input_setup();
+  input_setup();
   Button_kettei = new TextBoxButton("決定", colorBlack, 25, 20, height - 70, 200, 50, colorSub);
 }
 
 void page02_Input_draw() {
-  namuru_input_draw();
+  input_draw();
   batuButton.draw();
 }
 
@@ -27,7 +26,7 @@ void page02_Input_mouseClicked() {
   batuButton.mousePressed();
 }
 
-void namuru_input_setup() {
+void input_setup() {
   rect(500, 900, 40, 40);
   dateTime = Calendar.getInstance();
 
@@ -51,7 +50,7 @@ void namuru_input_setup() {
 }
 
 
-void namuru_input_draw() {
+void input_draw() {
   background(colorWhite);
   textFont(mgenplus_heavy);//テキストボタンは、.draw前にフォントを指定する。
   Button_kettei.draw();
@@ -249,7 +248,7 @@ void addArray() {
 
 
   //タスクタイトルを追加
-  taskTitleArray.add(textInput[0]);
+  taskTitleArray.add(inputTitle);
   println(taskTitleArray.get(0));
     println(taskTitleArray.get(1));
 
@@ -262,6 +261,12 @@ void addArray() {
   //未完了を追加
   isDone.add(0);
   
+  dataCount += 1;
+  ArrayList<String>base = new ArrayList<String>();
+  for(int i = 0; i<data_genre ;i++){
+    base.add("0");
+  }
+   dataBase.add(base);
   
   //println(planDateArray.get(1).get(Calendar.DATE));
 }

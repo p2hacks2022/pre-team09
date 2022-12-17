@@ -61,6 +61,7 @@ class BoxButton extends Button {
 }
 
 
+
 //テキスト付きのボックス(四角い)ボタンのクラス（完了ボタン、決定ボタン）
 class TextBoxButton extends BoxButton {
   String text;//文字
@@ -95,9 +96,7 @@ class TextBoxButton extends BoxButton {
         doneTask();
       }
       //ページ遷移
-      for (TaskPanel panel_this : panelArray) {
-        panel_this.getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray, isDone);
-      }
+      taskInit();
       page_num=1;
     }
   }

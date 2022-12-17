@@ -24,6 +24,7 @@ void setup() {
 
 void draw() {
   background(colorWhite);
+  
   switch(page_num) {
   case 1:
     page01_Panel_draw();

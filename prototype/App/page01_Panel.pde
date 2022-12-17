@@ -2,15 +2,13 @@
 
 void page01_Panel_setup(){
   setupPanel();//パネルを初期化
-  for(int i=0; i<panelArray.size(); i++){
-    panelArray.get(i).getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray, isDone);
-  }
+  taskInit();
 }
 
 void page01_Panel_draw(){
   
   for(TaskPanel panel_this : panelArray){
-    panel_this.getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray, isDone);
+    //taskInit();
     panel_this.draw();
   }
   fill(colorWhite);
@@ -32,7 +30,12 @@ void page01_Panel_draw(){
 void page01_Panel_mouseClicked(){
   plusButton.mousePressed();
   for(int i=0; i<panelArray.size(); i++){
-    targetIndex = panelArray.get(i).taskIndex;
     panelArray.get(i).mousePressed();//ページ遷移
+  }
+}
+
+void taskInit(){
+  for(int i=0; i<panelArray.size(); i++){
+    panelArray.get(i).getTaskDate(taskTitleArray, planDateArray, deadlineDateArray, predictDateArray, isDone);
   }
 }
