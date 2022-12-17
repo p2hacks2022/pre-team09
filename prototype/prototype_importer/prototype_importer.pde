@@ -1,4 +1,4 @@
-
+/*
 //color
 color color_main = #40B0A0;
 color color_sub = #A0F0D0;
@@ -110,15 +110,14 @@ void mouseClicked() {
        dateTime.set(Calendar.DATE,int(textName[3]));
        dateTime.set(Calendar.HOUR,int(textName[4]));
        dateTime.set(Calendar.MINUTE,int(textName[5]));
-       /*
+       
        println("Y:"+dateTime.get(Calendar.YEAR));
        println("M:"+dateTime.get(Calendar.MONTH));
        println("D:"+dateTime.get(Calendar.DATE));
        println("H:"+dateTime.get(Calendar.HOUR));
        println("m:"+dateTime.get(Calendar.MINUTE));
-       */
     }else{
       print("it's not over");
     }
   }
-}
+}*/
