@@ -1,4 +1,4 @@
-int targetIndex;//押された日付パネルに対応するデータを
+int targetIndex;//押された日付パネルに対応するデータのインデックス
 
 void page03_Taskview_setup(){
 }

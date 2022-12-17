@@ -22,7 +22,6 @@ void page01_Panel_draw(){
 
 void page01_Panel_mouseClicked(){
   plusButton.mousePressed();
-  
   for(int i=0; i<panelArray.size(); i++){
     targetIndex = panelArray.get(i).taskIndex;
     panelArray.get(i).mousePressed();//ページ遷移
