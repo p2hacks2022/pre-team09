@@ -8,7 +8,7 @@ void input_process() {
   dataCount = import_csv.getRowCount();
   data_genre = import_csv.getColumnCount();//列数
   
-  isDone = new boolean[data_total];//データの総数を受けてisDone配列を確保
+  isDone = new ArrayList<Integer>();//データの総数を受けてisDone配列を確保
   
   
   //taskTitleArrayにcsvの一列、isDoneにcsvの21列目を入れる。
@@ -24,16 +24,16 @@ void input_process() {
     
     //２１列目（完了か否か）をisDone(boolean配列)に入れる。
     if(dataBase.get(i).get(19) == "0"){
-      isDone[i] = false;
+      isDone.add(0);
     }else if(dataBase.get(i).get(19) =="1"){
-      isDone[i] = true;
+      isDone.add(1);
     }
   }
   for (int i=0; i<data_total; i++) {
     dataBase_to_Array(dataBase, planDateArray, i, 0);
     dataBase_to_Array(dataBase, deadlineDateArray, i, 5);
     dataBase_to_Array(dataBase, predictDateArray, i, 10);
-    dataBase_to_Array(dataBase, finishDateArray, i, 5);
+    dataBase_to_Array(dataBase, finishDateArray, i, 15);
   }
 }
 

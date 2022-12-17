@@ -18,6 +18,7 @@ void setup() {
   //各ページのセットアップ
   page01_Panel_setup();
   page02_Input_setup();
+  page03_Taskview_setup();
 }
 
 

@@ -64,10 +64,10 @@ class TaskPanel extends Panel{
   }
   
   //日付が一致する日時データがあるか取得するメソッド：タスクタイトル、予定日時データ、締切日時データ、推測日時データ
-  void getTaskDate(ArrayList<String> taskTitleArray, ArrayList<Calendar>  planDateArray, ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, boolean isDone[]){
+  void getTaskDate(ArrayList<String> taskTitleArray, ArrayList<Calendar>  planDateArray, ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Integer> isDone){
     
     for(int i = 0; i < planDateArray.size(); i++){
-      if(isDone[i] == false){
+      if(isDone.get(i) == 0){
         //println("planDate DATE",planDateArray.get(i).get(Calendar.DATE));
         if(isSameDate(this.dateTime, planDateArray.get(i))){//このパネルが持つ日時と予定日時が同じなら、
           this.taskType = "予定";

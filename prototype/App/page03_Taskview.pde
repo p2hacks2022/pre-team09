@@ -14,38 +14,34 @@ int deadlineYear, deadlineMonth, deadlineDay, deadlineHour, deadlineMinute;//締
 int predictYear, predictMonth, predictDay, predictHour, predictMinute;//推測
 int frombox_y;
 
+TextBoxButton doneButton;
+
 void page03_Taskview_setup(){
-  planDate = Calendar.getInstance();
-  deadlineDate = Calendar.getInstance();
-  predictDate= Calendar.getInstance();
-  
-  planDate.set(Calendar.MINUTE, 9);
-  
-  size(540,960);
-  //フォント読み込み
-  open_sans_regular  = createFont("OpenSans-Regular.ttf", 40);
-  mgenplus_regular = createFont("mgenplus-1c-regular.ttf", 40);
-  mgenplus_heavy = createFont("mgenplus-1c-heavy.ttf", 40);
-  textAlign(LEFT, TOP);
+  doneButton = new TextBoxButton("タスク完了！", colorWhite,30, width/2 - 120 ,height - 150, 240 ,100, colorMain);
 }
 
 void page03_Taskview_draw(){
   dateDraw();
   batuButton.draw();
+  
+  textFont(mgenplus_heavy);
+  doneButton.draw();
 }
 
 void page03_Taskview_mouseClicked(){
   batuButton.mousePressed();
+  doneButton.mousePressed();
 }
 
 
 void dateDraw(){
+  textAlign(LEFT, CENTER);
   noStroke();
   fill(colorWhite);
   rect(0, 0, 540, 960);//背景白
   fill(colorBlack);
   textFont(mgenplus_heavy);
-  text("入力", 20, 10);//入力文字列
+  text("入力", 20, 30);//入力文字列
   
   frombox_y=80;
   drawRect(colorSub,frombox_y);//タイトル頭
@@ -129,18 +125,6 @@ void drawYMDHM(int drawHigh){
   textAlign(LEFT, TOP);
 }
 
-/*
-String calendarToString_HourMinute(Calendar time){
-  String time_string = "";
-  time_string += str(time.get(Calendar.HOUR_OF_DAY)) + ":";
-  if(time.get(Calendar.MINUTE) < 10){//分が一桁の時にゼロ埋め
-    time_string += "0";
-  }
-  time_string += str(time.get(Calendar.MINUTE));
-  return time_string;
-}
-*/
-
 String addZeroMinute(int time){
   String time_string = "";
   if(time < 10){//分が一桁の時にゼロ埋め
@@ -150,7 +134,5 @@ String addZeroMinute(int time){
   return time_string;
 }
 
-void doneTask(){
-  
-}
+
  
