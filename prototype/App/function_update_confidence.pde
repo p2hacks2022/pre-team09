@@ -13,13 +13,13 @@ float alpha_postPlan = 0.1;
 float beta_preDeadline = 0.1;
 float beta_postDeadline = 0.4;
 
-void setupConfidence(float degreeOfConfidence, ArrayList<Calendar>  planDateArray ,ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Calendar> finishDateArray,ArrayList<String> isDone){
+float setupConfidence(float degreeOfConfidence, ArrayList<Calendar>  planDateArray ,ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Calendar> finishDateArray,ArrayList<Integer> isDone){
   
   Calendar NowDate;
   NowDate = Calendar.getInstance();
   for(int i=0; i < planDateArray.size(); i++){
     float alpha = 0, beta = 0;
-    if(isDone.get(i) == "TRUE"){
+    if(isDone.get(i) == 1){
       changeParam(alpha, beta, planDateArray.get(i), deadlineDateArray.get(i), predictDateArray.get(i), finishDateArray.get(i));
     }
     //締切超過していたら、信用度をだいぶ下げる。（使用パラメータ：beta_postDeadline)
@@ -29,13 +29,26 @@ void setupConfidence(float degreeOfConfidence, ArrayList<Calendar>  planDateArra
     float r = degreeOfConfidence;
     degreeOfConfidence = r + (1 - r)*alpha - r*beta;
   }
+  return degreeOfConfidence;
 }
 
-void updateConfidence(float degreeOfConfidence, Calendar planDate ,Calendar deadlineDate, Calendar predictDate, Calendar finishDate){
+float updateConfidence(float degreeOfConfidence, Calendar planDate ,Calendar deadlineDate, Calendar predictDate, Calendar finishDate){
   float alpha = 0, beta = 0;  
-  changeParam(alpha, beta, planDate, deadlineDate, predictDate, finishDate);
+  if(isPreDate(finishDate, planDate) == true){
+    //予定前に完了していたら、信用度を普通に上げる。（使用パラメータ：alpha_prePlan）
+    alpha = alpha_prePlan;
+  }else if(isPreDate(finishDate, predictDate) == true){
+    //予定後・推測前に完了していたら、信用度を少し上げる。（使用パラメータ：alpha_postPlan）
+    alpha = alpha_postPlan;
+  }else if(isPreDate(finishDate, deadlineDate) == true){
+    //推測後・締切前に完了していたら、信用度を少し下げる。（使用パラメータ：beta_preDeadline）
+    beta = beta_preDeadline;
+  }
   float r = degreeOfConfidence;
   degreeOfConfidence = r + (1 - r)*alpha - r*beta;
+  println(alpha, beta);
+  println( degreeOfConfidence);
+  return degreeOfConfidence;
 }
 
 

@@ -13,7 +13,6 @@ int planYear, planMonth, planDay, planHour, planMinute;//予定int
 int deadlineYear, deadlineMonth, deadlineDay, deadlineHour, deadlineMinute;//締め切り
 int predictYear, predictMonth, predictDay, predictHour, predictMinute;//推測
 int frombox_y;
-
 TextBoxButton doneButton;
 
 void page03_Taskview_setup(){
@@ -23,6 +22,8 @@ void page03_Taskview_setup(){
 void page03_Taskview_draw(){
   dateDraw();
   batuButton.draw();
+  //println(targetIndex);
+  //println(taskTitleArray.get(targetIndex));
   
   textFont(mgenplus_heavy);
   doneButton.draw();
@@ -35,15 +36,14 @@ void page03_Taskview_mouseClicked(){
 
 
 void dateDraw(){
+  frombox_y=80;
+  //println(targetIndex);
   textAlign(LEFT, CENTER);
   noStroke();
   fill(colorWhite);
   rect(0, 0, 540, 960);//背景白
   fill(colorBlack);
   textFont(mgenplus_heavy);
-  text("入力", 20, 30);//入力文字列
-  
-  frombox_y=80;
   drawRect(colorSub,frombox_y);//タイトル頭
   drawLine(frombox_y);//タイトル下線
   drawText("内容",frombox_y+45);//タイトル指示

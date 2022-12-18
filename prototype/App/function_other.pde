@@ -4,7 +4,6 @@ void textBox(String text, color textColor, int textSize, float x, float y, float
   fill(textColor);
   //textAscentとtextDescentを取得
   textSize(textSize);
-  textAlign(CENTER, CENTER);
   float a = textAscent();
   float b = textDescent();
   text(text, x + w/2 , y + h/2 - (5*b - a)/2);

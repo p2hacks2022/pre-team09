@@ -15,6 +15,8 @@ void setup() {
   setupCsv(); //csvファイルを読み込み
   setupButton();//ボタンクラスのインスタンス
   
+  degreeOfConfidence = setupConfidence(degreeOfConfidence, planDateArray ,deadlineDateArray,predictDateArray, finishDateArray,isDone);
+  
   //各ページのセットアップ
   page01_Panel_setup();
   page02_Input_setup();
@@ -24,6 +26,7 @@ void setup() {
 
 void draw() {
   background(colorWhite);
+  
   switch(page_num) {
   case 1:
     page01_Panel_draw();
@@ -38,6 +41,11 @@ void draw() {
   
   if(mouseClicked){
     println("Clicked");
+  }
+  
+  for(int i = 0; i< isDone.size(); i++){
+    println(isDone.get(i));
+    if(i == isDone.size()-1){println("");}
   }
 }
 

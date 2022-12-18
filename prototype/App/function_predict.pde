@@ -53,15 +53,16 @@ int diffDateMinute(Calendar A, Calendar B){
   return diffDateMinute;
 } //<>//
 
+//DateAが前で、DateBが後ならtrueを返す
 boolean isPreDate(Calendar DateA, Calendar DateB){
   boolean isPreDate = false;
-  
+  println(DateA.get(Calendar.DATE) , DateB.get(Calendar.DATE));
   //予定日と完了日を比較
   if(DateA.get(Calendar.YEAR) < DateB.get(Calendar.YEAR)){//年を比較
     isPreDate = true;
   }else if(DateA.get(Calendar.MONTH) < DateB.get(Calendar.MONTH)){
     isPreDate = true;
-  }else if(DateA.get(Calendar.DAY_OF_MONTH) < DateB.get(Calendar.DAY_OF_MONTH)){
+  }else if(DateA.get(Calendar.DATE) < DateB.get(Calendar.DATE)){//if(DateA.get(Calendar.DAY_OF_MONTH) < DateB.get(Calendar.DAY_OF_MONTH)){
     isPreDate = true;
   }else if (DateA.get(Calendar.HOUR_OF_DAY) < DateB.get(Calendar.HOUR_OF_DAY)){
     isPreDate = true;
