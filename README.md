@@ -30,7 +30,7 @@
 スクリーンショット(任意)
 ![2022-12-18_123516](https://user-images.githubusercontent.com/111856739/208280172-7d09590f-3d81-45fa-b869-8778a00533dc.png)
 
-信用度更新のアルゴリズム
+予想日時の推測・信用度更新のアルゴリズム
 ![bitmap](https://user-images.githubusercontent.com/111856739/208280536-e829f74a-3b5d-4b75-8849-35ae86fdaf29.png)
 
 # 開発体制  
