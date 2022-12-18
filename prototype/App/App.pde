@@ -15,6 +15,8 @@ void setup() {
   setupCsv(); //csvファイルを読み込み
   setupButton();//ボタンクラスのインスタンス
   
+  degreeOfConfidence = setupConfidence(degreeOfConfidence, planDateArray ,deadlineDateArray,predictDateArray, finishDateArray,isDone);
+  
   //各ページのセットアップ
   page01_Panel_setup();
   page02_Input_setup();

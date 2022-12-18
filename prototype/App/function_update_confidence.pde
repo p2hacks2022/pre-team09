@@ -13,7 +13,7 @@ float alpha_postPlan = 0.1;
 float beta_preDeadline = 0.1;
 float beta_postDeadline = 0.4;
 
-void setupConfidence(float degreeOfConfidence, ArrayList<Calendar>  planDateArray ,ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Calendar> finishDateArray,ArrayList<Integer> isDone){
+float setupConfidence(float degreeOfConfidence, ArrayList<Calendar>  planDateArray ,ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Calendar> finishDateArray,ArrayList<Integer> isDone){
   
   Calendar NowDate;
   NowDate = Calendar.getInstance();
@@ -29,6 +29,7 @@ void setupConfidence(float degreeOfConfidence, ArrayList<Calendar>  planDateArra
     float r = degreeOfConfidence;
     degreeOfConfidence = r + (1 - r)*alpha - r*beta;
   }
+  return degreeOfConfidence;
 }
 
 float updateConfidence(float degreeOfConfidence, Calendar planDate ,Calendar deadlineDate, Calendar predictDate, Calendar finishDate){
