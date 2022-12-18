@@ -30,6 +30,9 @@
 スクリーンショット(任意)
 ![2022-12-18_123516](https://user-images.githubusercontent.com/111856739/208280172-7d09590f-3d81-45fa-b869-8778a00533dc.png)
 
+信用度更新のアルゴリズム
+![bitmap](https://user-images.githubusercontent.com/111856739/208280536-e829f74a-3b5d-4b75-8849-35ae86fdaf29.png)
+
 # 開発体制  
 
 役割分担  
@@ -40,12 +43,13 @@
    - 設計担当...クラス設計、データの流れを考えた後、細かいクラスメソッドを定義、具体的な処理の実装。
 4. ページごとに、ひな形と処理を合体させる。
    - ページごと（日付パネルのページ、入力ページ、タスクビューページ）に担当者を割り当てた。
-5. すべてのページを一つのファイルに合体させる。    
- 　- 一つのブランチで、担当者と話しながら実装。
+5. すべてのページを一つのファイルに合体させる。
+   - 一つのブランチで、担当者と話しながら実装。
 
 開発における工夫した点  
-- チームメンバー5人の中でも、スキルや作業できる時間に差があった
-- 人間の信用に近い予測の演算を実装
+- チームメンバー5人の中でも、スキルや作業できる時間に差があったため、それぞれに適した役割分担をした。
+- 関数、クラスごとに
+- 楽しく話す。
 
 ## 開発技術 
 
@@ -53,14 +57,14 @@
 Processing
 
 利用したフレームワーク・ライブラリ  
-...  
+java.util.Calendar, javax.swing.JTextFieldなどのjavaの標準ライブラリ 
 
 その他開発に使用したツール・サービス     
 Git, GitHub ...コードの管理       
-Discord,Slack ...コミュニケーション・画面共有用、情報共有用  
-[Google Document](https://docs.google.com/document/d/1Ll4U0mxkzDm44R0HWg6R59Jcdg0Sg6zQNLpnZ3C2T2I/edit) ... 議事録、メモ
-[Google Spreadsheet](https://docs.google.com/spreadsheets/u/1/d/1XvWlb0A8xvIKXqqu6l4qAiA607tx2S2xZXSqNtNDWe0/edit?usp=sharing)...命名規則のまとめ
-[Microsft Visio](https://hakodate-my.sharepoint.com/:u:/g/personal/b1022230_fun_ac_jp/EU1-w_ULLQJCvUEidD92CT0BivcnRIeki8GWiCGOH1H0Bw?e=xioLZF)...クラス設計、データフローなど、設計に関するイメージの共有
-[Mindmenister](https://mm.tt/map/2526727627?t=1lYXHJufrV)...ブレインマップ
+Discord,Slack ...コミュニケーション・画面共有用、情報共有用    
+[Google Document](https://docs.google.com/document/d/1Ll4U0mxkzDm44R0HWg6R59Jcdg0Sg6zQNLpnZ3C2T2I/edit) ... 議事録、メモ     
+[Google Spreadsheet](https://docs.google.com/spreadsheets/u/1/d/1XvWlb0A8xvIKXqqu6l4qAiA607tx2S2xZXSqNtNDWe0/edit?usp=sharing)...命名規則のまとめ      
+[Microsft Visio](https://hakodate-my.sharepoint.com/:u:/g/personal/b1022230_fun_ac_jp/EU1-w_ULLQJCvUEidD92CT0BivcnRIeki8GWiCGOH1H0Bw?e=xioLZF)...クラス設計、データフローなど、設計に関するイメージの共有      
+[Mindmenister](https://mm.tt/map/2526727627?t=1lYXHJufrV)...ブレインマップ     
 
 
