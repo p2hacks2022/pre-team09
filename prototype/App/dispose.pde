@@ -34,17 +34,21 @@ void Array_to_dataBase() {
     dataBase.get(i).set(20,str(finishDateArray.get(i).get(Calendar.MINUTE)));
     
     dataBase.get(i).set(21,str(isDone.get(i)));
+    println("dataBase:setDone:", dataBase.get(i).get(21));
   }
 }
 
 void output_process(){
-  PrintWriter output_csv = createWriter("taskDate.csv");
+  //PrintWriter output_csv = createWriter("data/task/taskData.csv");
+  println("dataGenre",data_genre);
+  PrintWriter output_csv = createWriter("taskData.csv");
   for (int i = 0; i < dataCount; i++) {
     //output_csv.print(taskTitleArray.get(i) + ',');
-    for (int j = 0; j < data_genre; j++) {
-      output_csv.print(dataBase.get(i).get(j) + ',');
+    for (int j = 0; j < data_genre; j++) {//21<<data_genre
       if(j == data_genre-1 ){
         output_csv.println(dataBase.get(i).get(j));
+      }else{
+        output_csv.print(dataBase.get(i).get(j) + ',');
       }
     }
   }

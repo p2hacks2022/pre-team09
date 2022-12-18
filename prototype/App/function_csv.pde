@@ -7,7 +7,8 @@ void input_process() {
   data_total = import_csv.getRowCount(); //行数（データの総数）
   dataCount = import_csv.getRowCount();
   data_genre = import_csv.getColumnCount();//列数
-  
+  println("dataGenre",data_genre);
+   println("dataGenre",data_total);
   
   //taskTitleArrayにcsvの一列、isDoneにcsvの21列目を入れる。
   for (int i = 0; i < data_total; i++) {
@@ -20,11 +21,12 @@ void input_process() {
     dataBase.add(base);//追加
   }
   for (int i=0; i<data_total; i++) {
-    dataBase_to_Array(dataBase, planDateArray, i, 1);
-    dataBase_to_Array(dataBase, deadlineDateArray, i, 6);
-    dataBase_to_Array(dataBase, predictDateArray, i, 11);
-    dataBase_to_Array(dataBase, finishDateArray, i, 16);
-    isDone.add(int(dataBase.get(i).get(21)));
+      dataBase_to_Array(dataBase, planDateArray, i, 1);
+      dataBase_to_Array(dataBase, deadlineDateArray, i, 6);
+      dataBase_to_Array(dataBase, predictDateArray, i, 11);
+      dataBase_to_Array(dataBase, finishDateArray, i, 16);
+      isDone.add(int(dataBase.get(i).get(21)));
+      println("isDone.add:",int(dataBase.get(i).get(21)));
   }
 }
 

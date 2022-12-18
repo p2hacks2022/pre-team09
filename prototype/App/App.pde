@@ -42,6 +42,11 @@ void draw() {
   if(mouseClicked){
     println("Clicked");
   }
+  
+  for(int i = 0; i< isDone.size(); i++){
+    println(isDone.get(i));
+    if(i == isDone.size()-1){println("");}
+  }
 }
 
 boolean mouseClicked = false;
