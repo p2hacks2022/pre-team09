@@ -69,7 +69,10 @@ class TaskPanel extends Panel{
   void getTaskDate(ArrayList<String> taskTitleArray, ArrayList<Calendar>  planDateArray, ArrayList<Calendar> deadlineDateArray, ArrayList<Calendar> predictDateArray, ArrayList<Integer> isDone){
     
     for(int i = 0; i < dataCount; i++){
-      if(isDone.get(i) == 0){//もし完了していなかったら
+      if(isDone.get(i) == 1){
+        println("完了",this.taskTitle);
+        this.taskType = "なし";
+      }else if(isDone.get(i) == 0){//もし完了していなかったら
         //println("planDate DATE",planDateArray.get(i).get(Calendar.DATE));
         if(isSameDate(this.dateTime, planDateArray.get(i))){//このパネルが持つ日時と予定日時が同じなら、
           this.taskType = "予定";
@@ -89,9 +92,6 @@ class TaskPanel extends Panel{
           this.taskTime_str = calendarToString_HourMinute(predictDateArray.get(i));
           this.taskIndex = i;
           this.taskTitle = taskTitleArray.get(i);
-        }else if(isDone.get(i) == 1){
-          println("完了",this.taskTitle);
-           this.taskType = "なし";
         }
       }
     }
